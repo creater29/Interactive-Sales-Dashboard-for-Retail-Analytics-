@@ -1,0 +1,20 @@
+// Total Sales
+Total Sales = SUM(Sales[Quantity]) * SUM(Products[SellingPrice])
+
+// Profit Margin
+Profit Margin = DIVIDE([Total Profit], [Total Sales], 0)
+
+// Inventory Turnover Rate
+Inventory Turnover = 
+DIVIDE(
+    SUM(Sales[Quantity]) * SUM(Products[CostPrice]),
+    AVERAGE(Inventory[StockQuantity]) * SUM(Products[CostPrice]),
+    0
+)
+  
+// Sales Forecasting (Moving Average)
+Sales Forecast (30-day MA) = 
+AVERAGEX(
+    DATESINPERIOD('Sales'[SaleDate], LASTDATE('Sales'[SaleDate]), -30, DAY),
+    [Total Sales]
+)
